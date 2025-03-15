@@ -16,6 +16,7 @@
 	<Application.Resources>
 
 		<SolidColorBrush x:Key="MidBlueBrush">#373c44</SolidColorBrush>
+		<SolidColorBrush x:Key="ControlsBrush">#282b30</SolidColorBrush>
 		<SolidColorBrush x:Key="LightBlueBrush">#606875</SolidColorBrush>
 		<SolidColorBrush x:Key="BlueBrush">#1891C8</SolidColorBrush>
 		<SolidColorBrush x:Key="DarkBlueBrush">#1a1c20</SolidColorBrush>

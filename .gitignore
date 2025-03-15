@@ -8,3 +8,4 @@ obj/
 # Ignore specific paths
 /src/TunaGUI/bin/
 /src/TunaGUI/obj/
+src/TunaGUI/.editorconfig

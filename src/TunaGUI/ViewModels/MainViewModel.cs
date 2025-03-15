@@ -13,13 +13,13 @@ public partial class MainViewModel:ViewModelBase
     private PageFactory _pageFactory;
 
     [ObservableProperty]
-    private bool sideMenuExpanded = true;
+    private bool sideMenuExpanded = false;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HomePageIsActive))]
     [NotifyPropertyChangedFor(nameof(ServicesPageIsActive))]
     [NotifyPropertyChangedFor(nameof(SettingsPageIsActive))]
-    private PageViewModel currentPage;
+    private PageViewModel ?currentPage;
 
     public bool HomePageIsActive => CurrentPage.PageName == ApplicationPageNames.Home;
     public bool ServicesPageIsActive => CurrentPage.PageName == ApplicationPageNames.Services;
@@ -28,6 +28,10 @@ public partial class MainViewModel:ViewModelBase
 
 
 
+    public MainViewModel()
+    {
+        CurrentPage = new HomePageViewModel();
+    }
     public MainViewModel(PageFactory pageFactory)
     {
         _pageFactory = pageFactory;
