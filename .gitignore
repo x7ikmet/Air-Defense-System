@@ -1,2 +1,6 @@
 .pio
 .vscode
+.vs
+bin/
+obj/
+/src/TunaGUI/bin

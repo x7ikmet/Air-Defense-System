@@ -7,7 +7,7 @@ class Stepper{
 
     void setDirection(bool direction);
     void setSpeed(int speed);
-    void move();
+    void step();
 
 
 

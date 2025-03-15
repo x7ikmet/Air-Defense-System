@@ -1,0 +1,26 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="TunaGUI.App"
+             xmlns:local="using:TunaGUI"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+	<Application.Resources>
+
+		<SolidColorBrush x:Key="MidBlueBrush">#373c44</SolidColorBrush>
+		<SolidColorBrush x:Key="LightBlueBrush">#606875</SolidColorBrush>
+		<SolidColorBrush x:Key="BlueBrush">#1891C8</SolidColorBrush>
+		<SolidColorBrush x:Key="DarkBlueBrush">#1a1c20</SolidColorBrush>
+		<SolidColorBrush x:Key="BrightBlueBrush">#7f98c7</SolidColorBrush>
+
+	</Application.Resources>
+	
+</Application>

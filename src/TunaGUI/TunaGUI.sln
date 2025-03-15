@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TunaGUI", "TunaGUI.csproj", "{68E1215E-448D-7073-6AF6-EC8A4F764A00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68E1215E-448D-7073-6AF6-EC8A4F764A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E1215E-448D-7073-6AF6-EC8A4F764A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E1215E-448D-7073-6AF6-EC8A4F764A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E1215E-448D-7073-6AF6-EC8A4F764A00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50C2FEA4-9CFB-456A-AC4E-CAF4E53357EB}
+	EndGlobalSection
+EndGlobal

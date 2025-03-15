@@ -19,3 +19,20 @@ void Stepper::setSpeed(int Speed){
     speed = Speed;
 }
 
+
+void Stepper::step(){
+    if (currentStep < maxSteps && direction == true){
+        digitalWrite(stepPin, HIGH);
+        delayMicroseconds(speed);
+        digitalWrite(stepPin, LOW);
+        delayMicroseconds(speed);
+        currentStep++;
+    }
+    else if (currentStep > minSteps && direction == false){
+        digitalWrite(stepPin, HIGH);
+        delayMicroseconds(speed);
+        digitalWrite(stepPin, LOW);
+        delayMicroseconds(speed);
+        currentStep--;
+    }
+}
