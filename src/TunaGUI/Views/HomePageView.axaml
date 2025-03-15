@@ -2,29 +2,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:TunaGUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Background="{DynamicResource DarkBlueBrush}"
 			 Foreground="White"
 			 x:Class="TunaGUI.Views.HomePageView"
-			 >
-
+			 x:DataType="vm:HomePageViewModel">
 
 	<Grid ColumnDefinitions="2*,5*">
-		<Grid Grid.Column="0"  RowDefinitions="5*,3*">
-			<Border Grid.Row="0"   Background="{DynamicResource ControlsBrush}" Margin="10" CornerRadius="10">
-				<StackPanel Margin="5">
-					<Label Content="Controls"></Label>
-				</StackPanel>
+		<Grid Grid.Column="0" RowDefinitions="5*,3*">
+			<Border Grid.Row="0" Background="{DynamicResource ControlsBrush}" Margin="10" CornerRadius="10">
+				<ScrollViewer>
+					<StackPanel Margin="5" Spacing="10">
+						<Label Content="Camera Controls" FontWeight="Bold"/>
+						
+						<Label Content="Select Camera:" Margin="0,5,0,0"/>
+						<ComboBox ItemsSource="{Binding WebcamViewModel.AvailableCameras}" 
+								  SelectedIndex="{Binding WebcamViewModel.SelectedCameraIndex}"
+								  HorizontalAlignment="Stretch"/>
+						
+						<!-- Use separate buttons for start and stop for better reliability -->
+						<Button Content="Start Camera" 
+                                Command="{Binding WebcamViewModel.StartWebcamCommand}"
+                                IsVisible="{Binding !WebcamViewModel.IsWebcamActive}"
+                                HorizontalAlignment="Stretch"/>
+						<Button Content="Stop Camera" 
+                                Command="{Binding WebcamViewModel.StopWebcamCommand}"
+                                IsVisible="{Binding WebcamViewModel.IsWebcamActive}"
+                                HorizontalAlignment="Stretch"/>
+						
+						<TextBlock Text="{Binding WebcamViewModel.Fps, StringFormat='FPS: {0:F1}'}" 
+								  FontWeight="Bold"
+								  Margin="0,5" />
+					</StackPanel>
+				</ScrollViewer>
 			</Border>
 
 			<Border Grid.Row="1" Background="{DynamicResource ControlsBrush}" Margin="10,0,10,10" CornerRadius="10">
 				<StackPanel Margin="5">
-					<Label Content="Data"></Label>
+					<Label Content="Camera Status" FontWeight="Bold"/>
+					<TextBlock Text="{Binding WebcamViewModel.CameraStatus}" TextWrapping="Wrap"/>
 				</StackPanel>
 			</Border>
 		</Grid>
 
-		<ContentControl Grid.Column="1" Background="{DynamicResource ControlsBrush}" CornerRadius="5" Margin="3"></ContentControl>
+		<ContentControl Grid.Column="1" Background="{DynamicResource ControlsBrush}" CornerRadius="5" Margin="2,10,4,10">
+			<Grid>
+				<Image Source="{Binding WebcamViewModel.CurrentFrame}" Stretch="Uniform"/>
+				<TextBlock Text="No webcam feed available" 
+						   FontSize="18"
+						   FontWeight="Bold"
+						   VerticalAlignment="Center" 
+						   HorizontalAlignment="Center">
+					<TextBlock.IsVisible>
+						<Binding Path="WebcamViewModel.CurrentFrame" Converter="{x:Static ObjectConverters.IsNull}"/>
+					</TextBlock.IsVisible>
+				</TextBlock>
+			</Grid>
+		</ContentControl>
 	</Grid>
 	
 </UserControl>

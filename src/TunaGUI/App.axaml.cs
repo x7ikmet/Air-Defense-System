@@ -10,11 +10,15 @@ using Microsoft.Extensions.DependencyInjection;
 using TunaGUI.Factories;
 using System;
 using TunaGUI.Data;
+using TunaGUI.Services;
 
 namespace TunaGUI;
 
 public partial class App : Application
 {
+    // Add a static ServiceProvider to access services from anywhere
+    public static IServiceProvider? Services { get; private set; }
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -22,10 +26,15 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-
         var collection = new ServiceCollection();
+        
+        // Register services
+        collection.AddSingleton<IWebcamService, WebcamService>();
+        
+        // Register ViewModels - Keep webcam and home page as singletons
         collection.AddSingleton<MainViewModel>();
-        collection.AddTransient<HomePageViewModel>();
+        collection.AddSingleton<WebcamViewModel>();  // Changed to singleton
+        collection.AddSingleton<HomePageViewModel>(); // Changed to singleton
         collection.AddTransient<ServicesPageViewModel>();
         collection.AddTransient<SettingsPageViewModel>();
 
@@ -39,7 +48,7 @@ public partial class App : Application
 
         collection.AddSingleton<PageFactory>();
 
-        var services = collection.BuildServiceProvider();
+        Services = collection.BuildServiceProvider();
 
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -48,7 +57,7 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = services.GetRequiredService<MainViewModel>(),
+                DataContext = Services.GetRequiredService<MainViewModel>(),
             };
         }
 
