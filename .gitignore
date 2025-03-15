@@ -1,7 +1,10 @@
 .pio
 .vscode
 .vs
+# Ignore build directories
 bin/
 obj/
-/src/TunaGUI/bin
-/src/TunaGUI/bin
+
+# Ignore specific paths
+/src/TunaGUI/bin/
+/src/TunaGUI/obj/
