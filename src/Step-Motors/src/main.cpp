@@ -1,28 +1,31 @@
 #include <Arduino.h>
-#include <Stepper.h>
+#include <AccelStepper.h>
 
-#define STEP_PIN 33
-#define DIR_PIN 32
+#define STEP_PIN 9
+#define DIR_PIN 10
 
+const int limitMin = 2;
+const int limitMax = 3;
 
-Stepper stepper(400, DIR_PIN, STEP_PIN);
+AccelStepper stepper(AccelStepper::DRIVER, STEP_PIN, DIR_PIN);
 
 void setup() {
-
-    stepper.setSpeed(1000);
-    stepper.setDirection(true);
+    stepper.setMaxSpeed(1000);
+    
+    stepper.runSpeed();
+    stepper.setAcceleration(50000);
 }
 
 void loop() {
-
-  for (int i = 0; i < 400; i++) { 
-    stepper.step();
-  }
+  stepper.move(1600);
+//   stepper.runSpeedToPosition();
+  stepper.runToPosition();
 
   delay(1000); 
 
-
-  stepper.setDirection(!digitalRead(DIR_PIN));
+  stepper.move(-1600);
+//   stepper.runSpeedToPosition();
+  stepper.runToPosition();
 
   delay(1000);
 }
